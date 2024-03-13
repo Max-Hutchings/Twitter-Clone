@@ -1,4 +1,4 @@
-import Account from "../model/account.model.js";
+import Account from "../model/account.model.js"
 import hashPassword from "../validators/hashPassword.js";
 
 import chai, {expect} from "chai";
@@ -10,6 +10,7 @@ import {
 
 } from "./test_data/changePasswordTestData.js";
 import jwt from "jsonwebtoken";
+import mongoose from "mongoose";
 
 
 const ENDPOINT_PATH = "/authentication/change-password";
@@ -18,15 +19,16 @@ chai.use(chaiHttp);
 
 describe("Tests the change password endpoint", () => {
     let token;
-
+    let account;
     beforeEach(async () => {
         try {
-            let account;
+            await mongoose.connect(process.env.DB_URI);
             await Account.deleteMany();
             const hashedPassword = await hashPassword("123PASword#!");
             account = new Account({
                 "fName": "Max",
                 "lName": "Hutchings",
+                "username": "donut_lover",
                 "email": "max@gmail.com",
                 "password": hashedPassword
             })

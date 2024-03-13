@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-import passwordValidator from "../validators/passwordValidator.js";
+import * as validator from "validator";
 
 
 
@@ -22,8 +22,25 @@ const accountSchema = new Schema({
         }
     },
 
+    "username": {
+        type: String,
+        unique: true,
+        required: [true, "No username provided"],
+        validate: [
+            {
+                validator: value => value.length <= 60,
+                message: "Username too long"
+            },
+            {
+                validator: value => value.length >= 2,
+                message: "Username too short"
+            }
+        ]
+    },
+
     "email": {
         type: String,
+        unique: true,
         required: [true, "No email supplied"],
         match: [/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/, "Invalid email address"]
     },

@@ -5,10 +5,14 @@ import mongoose from "mongoose";
 import cookieParser from 'cookie-parser';
 
 import {router as authentication} from "./controller/authentication.js";
-import {router as savedLocations} from "./controller/savedLocations.js";
 import authenticateJWT from "./validators/verifyJWT.js";
 
-dotenv.config({path: './.env.dev'});
+
+dotenv.config({ path: `./.env.${process.env.NODE_ENV}` });
+
+const dbURI = process.env.DB_URI;
+console.log(dbURI);
+console.log("starting server");
 
 
 const app = express();
@@ -25,7 +29,7 @@ app.use("/authentication", authentication)
 
 
 // Connect to db
-const dbURI = process.env.NODE_ENV === 'test' ? process.env.TEST_DB_URI : process.env.DB_URI;
+
 
 const main = async () => {
     console.log(`Connecting to: ${dbURI}`)

@@ -11,31 +11,35 @@ import {
     noLNameSignUp, 
     incorrectEmailSignUp,
     incorrectPasswordSignUp,
-  
 
 } from "./test_data/signUpTestData.js";
+import mongoose from "mongoose";
 
 
 const TESTPATH = "/authentication/sign-up";
-
 chai.use(chaiHttp);
 
 describe("Test sign up endpoint", () => {
+
+
+
     beforeEach(async() => {
         try{
-        await Account.deleteMany();
+            await mongoose.connect(process.env.DB_URI);
+            // console.log(process.env.DB_URI);
+            await Account.deleteMany();
+            // console.log("Deleted account in preparation");
         }catch(e){
             console.error(e);
             throw new Error();
         }
     })
 
-
     it("Should sign up with valid details present", async () => {
+        // console.log("test called")
         const res = await chai.request(server)
             .post(TESTPATH)
             .send(validSignup);
-
         expect(res).to.have.status(200);
         expect(res.body).to.have.property("message", "Successfully create account")
     })
@@ -45,7 +49,7 @@ describe("Test sign up endpoint", () => {
             .post(TESTPATH)
             .send(noFNameSignUp);
         
-        expect(res).to.have.status(422);
+        expect(res).to.have.status(412);
         expect(res.body).to.have.property("message", "Invalid user details");
     })
 
@@ -54,7 +58,7 @@ describe("Test sign up endpoint", () => {
             .post(TESTPATH)
             .send(noLNameSignUp)
 
-        expect(res).to.have.status(422);
+        expect(res).to.have.status(412);
         expect(res.body).to.have.property("message", "Invalid user details");
     })
 
@@ -64,7 +68,7 @@ describe("Test sign up endpoint", () => {
             .post(TESTPATH)
             .send(incorrectEmailSignUp);
         
-        expect(res).to.have.status(422);
+        expect(res).to.have.status(412);
         expect(res.body).to.have.property("message", "Invalid user details");
     })
 
@@ -72,8 +76,8 @@ describe("Test sign up endpoint", () => {
         const res = await chai.request(server)
             .post(TESTPATH)
             .send(incorrectPasswordSignUp);
-        
-        expect(res).to.have.status(422);
+
+        expect(res).to.have.status(412);
         expect(res.body).to.have.property("message", "Invalid user details");
     });
 

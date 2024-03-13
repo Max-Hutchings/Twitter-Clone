@@ -17,20 +17,21 @@ describe("Tests the /validate-jwt endpoint ", async () => {
     let token;
 
     beforeEach(async () => {
-
+        await mongoose.connect(process.env.DB_URI);
         await Account.deleteMany();
         const hashedPassword = await hashPassword("dsfodfnsodfosdf67##DSDDS");
         account = new Account({
             "fName": "Max",
             "lName": "Hutchings",
+            "username": "donut_lover",
             "email": "max@gmail.com",
             "password": hashedPassword
         });
 
         account = await account.save();
         token = await jwt.sign({userId: account._id.toString()}, process.env.JWT_SECRET, {expiresIn: "1h"});
-        console.log(account);
-        console.log(token);
+        // console.log(account);
+        // console.log(token);
     })
 
     after(async () => {

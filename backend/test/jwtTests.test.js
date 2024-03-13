@@ -8,7 +8,7 @@ console.log("JWT Secret:", process.env.JWT_SECRET);
 
 describe("Testing JWT creation and verification", () => {
 
-    it.skip("Should generate a JWT from a user id", async () => {
+    it("Should generate a JWT from a user id", async () => {
         const userId = "234";
 
         const token = GenerateJWT(userId);

@@ -1,6 +1,7 @@
 export const validSignup = {
     "fName": "Max",
     "lName": "Hutchings",
+    "username": "donut_lover",
     "email": "max@gmail.com",
     "password": "PaSs#w4rd9dfsg"
 }
@@ -9,6 +10,7 @@ export const validSignup = {
 export const noFNameSignUp = {
     "fName": "",
     "lName": "dsds",
+    "username": "donut_lover",
     "email": "max@gmail.com",
     "password": "PaSs#w4rd9d"
 }
@@ -17,6 +19,7 @@ export const noFNameSignUp = {
 export const noLNameSignUp = {
     "fName": "sdsdsd",
     "lName": "",
+    "username": "donut_lover",
     "email": "max@gmail.com",
     "password": "PaSs#w4rd9d"
 }
@@ -24,6 +27,7 @@ export const noLNameSignUp = {
 export const incorrectEmailSignUp = {
     "fName": "sdsdsd",
     "lName": "hutchings",
+    "username": "donut_lover",
     "email": "maxgmail.com",
     "password": "PaSs#w4rd9d"
 }
@@ -31,6 +35,7 @@ export const incorrectEmailSignUp = {
 export const incorrectPasswordSignUp = {
     "fName": "sdsdsd",
     "lName": "hutchings",
+    "username": "donut_lover",
     "email": "maxgmail.com",
     "password": "pass"
 }

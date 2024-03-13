@@ -8,6 +8,7 @@ import {
     correctDetails,
     incorrectEmail,
 } from "./test_data/loginTestData.js";
+import mongoose from "mongoose";
 
 
 const TESTPATH = "/authentication/login";
@@ -19,16 +20,20 @@ describe("Tests login endpoint", () => {
 
     beforeEach(async() => {
         try{
+            await mongoose.connect(process.env.DB_URI);
             await Account.deleteMany();
+            // console.log("Clear accounts ready for testing");
             const hashedPassword = await hashPassword("123PASword#!");
             const account = new Account({
                 "fName": "Max",
                 "lName": "Hutchings",
+                "username": "donut_lover",
                 "email": "max@gmail.com",
                 "password": hashedPassword
             })
 
-        await account.save();
+            await account.save();
+            // console.log("saved practice account");
         }catch(e){
             console.log(e);
             throw new Error();

@@ -8,6 +8,7 @@ describe("Account Model Password Validation Tests", () => {
         const account = new Account({
             fName: "Ed",
             lName: "Wright",
+            username: "donut_lover",
             email: "ed@digitalfutures.com",
             password: password
         });
@@ -50,6 +51,7 @@ describe("Account Model Password Validation Tests", () => {
         const account = new Account({
             fName: "Ed",
             lName: "Wright",
+            username: "donut_lover",
             email: "ed@digitalfutures.com",
             password: passwords.validPassword
         });

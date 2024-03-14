@@ -2,8 +2,8 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import { expect } from 'chai';
 
-import server from '../server.js';  
-import Account from '../model/account.model.js';
+import server from '../../server.js';
+import Account from '../../model/account.model.js';
 
 import { 
     validSignup, 
@@ -12,7 +12,7 @@ import {
     incorrectEmailSignUp,
     incorrectPasswordSignUp,
 
-} from "./test_data/signUpTestData.js";
+} from "../test_data/signUpTestData.js";
 import mongoose from "mongoose";
 
 

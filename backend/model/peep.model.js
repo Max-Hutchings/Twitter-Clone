@@ -11,7 +11,8 @@ const peepSchema = new Schema({
         type: String,
         required: [true, "No peep text content"],
         validate: {
-            validator: value => {return value.length < 300;},
+            validator: value => {
+                return value.length < 300;},
             message: "Text content too long"
         }
     },

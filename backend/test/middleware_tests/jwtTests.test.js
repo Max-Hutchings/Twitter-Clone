@@ -1,5 +1,5 @@
-import GenerateJWT from "../validators/generateJWT.js";
-import getIDFromJWT from "../validators/getIDFromJWT.js";
+import GenerateJWT from "../../validators/generateJWT.js";
+import getIDFromJWT from "../../validators/getIDFromJWT.js";
 import {assert, expect} from "chai";
 
 
@@ -20,4 +20,6 @@ describe("Testing JWT creation and verification", () => {
         assert.strictEqual(extractedId, userId, "Extracted user ID should match the original");
 
     })
+
+
 })

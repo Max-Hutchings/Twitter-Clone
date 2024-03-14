@@ -1,14 +1,14 @@
-import Account from "../model/account.model.js"
-import hashPassword from "../validators/hashPassword.js";
+import Account from "../../model/account.model.js"
+import hashPassword from "../../validators/hashPassword.js";
 
 import chai, {expect} from "chai";
 import chaiHttp from "chai-http";
-import server from "../server.js";
+import server from "../../server.js";
 
 import {
     correctPasswordChange,
 
-} from "./test_data/changePasswordTestData.js";
+} from "../test_data/changePasswordTestData.js";
 import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
 

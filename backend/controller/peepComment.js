@@ -6,13 +6,11 @@ import getIDFromJWT from "../validators/getIDFromJWT.js";
 
 export const router = express.Router();
 
-router.route("/peep-comments/:peepId").get(
+router.route("/:peepId").get(
     async(request, response) => {
         try{
             const peepId = request.params.peepId;
-
-            const comments = await PeepComment.find({"peep": peepId });
-
+            const comments = await PeepComment.find({"peepId": peepId });
             return response.status(200).json({
                 "message": `Successfully gathered comments for peep ${peepId}`,
                 "data": comments
@@ -20,7 +18,7 @@ router.route("/peep-comments/:peepId").get(
 
         }catch(e){
             console.log(e);
-            return response.status(404).json({
+            return response.status(500).json({
                 "message": "Cannot find the requested comments",
                 "error": e.message
             })
@@ -39,7 +37,7 @@ router.route("/add-peep-comment").post(
         if (!errors.isEmpty()) return response.status(401).json({"message": "Failed to provide required fields"});
 
         try {
-            const userId = request.user;
+            const userId = await getIDFromJWT(request.cookies.token)
 
             if (!userId) return response.status(401).json({"message": "Invalid token"});
 

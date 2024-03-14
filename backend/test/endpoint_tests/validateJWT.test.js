@@ -1,9 +1,9 @@
-import hashPassword from "../validators/hashPassword.js";
-import Account from "../model/account.model.js";
-import generateJWT from "../validators/generateJWT.js";
+import hashPassword from "../../validators/hashPassword.js";
+import Account from "../../model/account.model.js";
+import generateJWT from "../../validators/generateJWT.js";
 import chaiHttp from "chai-http";
 import chai, {expect} from "chai";
-import server from "../server.js";
+import server from "../../server.js";
 import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
 

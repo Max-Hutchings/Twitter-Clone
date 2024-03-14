@@ -1,13 +1,13 @@
-import hashPassword from "../validators/hashPassword.js"
-import Account from "../model/account.model.js"
+import hashPassword from "../../validators/hashPassword.js"
+import Account from "../../model/account.model.js"
 import chai, {expect} from "chai";
 import chaiHttp from "chai-http";
-import server from "../server.js";
+import server from "../../server.js";
 
 import {
     correctDetails,
     incorrectEmail,
-} from "./test_data/loginTestData.js";
+} from "../test_data/loginTestData.js";
 import mongoose from "mongoose";
 
 

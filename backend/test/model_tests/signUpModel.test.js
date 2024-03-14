@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import {expect} from "chai";
-import Account from "../model/account.model.js";
-import {passwords} from "../test/test_data/signUpTestData.js";
+import Account from "../../model/account.model.js";
+import {passwords} from "../test_data/signUpTestData.js";
 
 describe("Account Model Password Validation Tests", () => {
     const validateAndGetErrorMessage = (password) => {

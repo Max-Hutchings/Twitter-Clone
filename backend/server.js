@@ -5,6 +5,8 @@ import mongoose from "mongoose";
 import cookieParser from 'cookie-parser';
 
 import {router as authentication} from "./controller/authentication.js";
+import {router as peep} from "./controller/peep.js";
+import {router as peepComment} from "./controller/peepComment.js";
 import authenticateJWT from "./validators/verifyJWT.js";
 
 
@@ -25,6 +27,8 @@ app.use(cookieParser());
 
 // Base endpoints
 app.use("/authentication", authentication)
+app.use("/peep", peep)
+app.use("/peep-comment", peepComment)
 
 
 

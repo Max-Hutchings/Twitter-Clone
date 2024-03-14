@@ -1,10 +1,10 @@
 import {expect} from "chai";
-import Peep from "../model/peep.model.js";
-import {tooLongString} from "./test_data/peepModelTestData.js";
+import Peep from "../../model/peep.model.js";
+import {tooLongString} from "../test_data/peepModelTestData.js";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import Account from "../model/account.model.js";
-import hashPassword from "../validators/hashPassword.js";
+import Account from "../../model/account.model.js";
+import hashPassword from "../../validators/hashPassword.js";
 
 dotenv.config({ path: `./.env.${process.env.NODE_ENV}` });
 
@@ -27,6 +27,7 @@ describe("Test the peep model", () => {
             });
 
             account = await account.save();
+            console.log(account)
         }catch (e) {
             console.log("Failed to prepare account for peep model test");
             console.log(e);

@@ -20,7 +20,7 @@ export default function SignupForm(){
     async function submitSignup(){
         try{
             await callSignupEndpoint(signup);
-            navigate("/");
+            navigate("/login");
         } catch (e){
             console.error("Signup error:", e);
             alert("Failed to sign up. Please try again.");
@@ -30,7 +30,7 @@ export default function SignupForm(){
 
     return(
         <>
-            <form onSubmit={submitSignup}>
+            <form onSubmit={(e) => {e.preventDefault(); submitSignup();}} >
                     <div className="row m-2">
                         <div className="col-6">
                             <input

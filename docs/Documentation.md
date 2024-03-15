@@ -29,3 +29,5 @@
 
 
 ## Proof of AI
+### Optimising/refactoring code
+![img_11.png](img_11.png)

@@ -1,7 +1,11 @@
 import {useState} from "react";
+import callSignupEndpoint from "../../services/apis/SignupEndpoint.jsx";
+import {useNavigate} from "react-router-dom";
 
 
 export default function SignupForm(){
+
+    const navigate = useNavigate();
 
     const [signup, setSignup] = useState(
         {
@@ -13,12 +17,21 @@ export default function SignupForm(){
         }
     );
 
+    async function submitSignup(){
+        try{
+            await callSignupEndpoint(signup);
+            navigate("/");
+        } catch (e){
+            console.error("Signup error:", e);
+            alert("Failed to sign up. Please try again.");
+        }
+    }
+
 
     return(
         <>
-            <form>
-                {/*<div className="d-flex flex-column justify-content-center align-items-center">*/}
-                    <div className="row">
+            <form onSubmit={submitSignup}>
+                    <div className="row m-2">
                         <div className="col-6">
                             <input
                                 className={"form-control w-100"}
@@ -44,7 +57,7 @@ export default function SignupForm(){
 
 
                     <input
-                        className={"form-control"}
+                        className={"form-control m-2"}
                         type="text"
                         value={signup.username}
                         placeholder={"Username"}
@@ -52,7 +65,7 @@ export default function SignupForm(){
                     />
 
                     <input
-                        className={"form-control"}
+                        className={"form-control m-2"}
                         type="email"
                         value={signup.email}
                         placeholder={"Email"}
@@ -60,18 +73,17 @@ export default function SignupForm(){
                     />
 
                     <input
-                        className={"form-control"}
+                        className={"form-control m-2"}
                         type="password"
                         value={signup.password}
                         placeholder={"Password"}
                         onChange={(e) => setSignup({...signup, password: e.target.value})}
                     />
 
-                    <button className="btn btn-primary text-light w-100">
+                    <button className="btn btn-primary text-light w-100 m-2">
                         Sign Up
                     </button>
 
-                {/*</div>*/}
             </form>
         </>
     )

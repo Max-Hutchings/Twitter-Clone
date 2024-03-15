@@ -1,10 +1,15 @@
 import Signup from "../../src/pages/Signup.jsx";
 import {render, screen} from "@testing-library/react";
+import {MemoryRouter} from "react-router-dom";
 
 
 describe("Testing signup page", () => {
     it("Signup form renders with correct inputs", () => {
-        render(<Signup />)
+        render(
+            <MemoryRouter>
+                <Signup />
+            </MemoryRouter>
+        );
 
         const fNameInput = screen.getByPlaceholderText("First Name");
         expect(fNameInput).toBeInTheDocument();

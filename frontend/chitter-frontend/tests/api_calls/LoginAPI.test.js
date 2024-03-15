@@ -4,13 +4,19 @@ import callLoginEndpoint from "../../src/services/apis/LoginEndpoint.jsx";
 
 describe('callLoginEndpoint', () => {
     const mock = new MockAdapter(axios);
-    const userData = {email: 'user@example.com', password: 'password123'};
+    const loginData = { email: 'test@example.com', password: 'password123' };
+    const mockResponse = {
+        message: 'Login Successful',
+        fName: 'John',
+        lName: 'Doe',
+        email: 'test@example.com'
+    };
 
-    it('should return data on successful login', async () => {
-        const responseData = {message: 'Login successful'};
-        mock.onPost("authentication/login").reply(200, responseData);
+    it('should return the correct response on successful login', async () => {
+        mock.onPost("authentication/login").reply(200, mockResponse);
 
-        const result = await callLoginEndpoint(userData);
-        expect(result).toEqual(responseData);
+        const result = await callLoginEndpoint(loginData);
+        expect(result).toEqual(mockResponse);
     });
-})
+
+});

@@ -82,6 +82,7 @@ router.route("/login").post(
             res.cookie("token", generateJWT(account._id), {httpOnly: true, sameSite: "strict"});
 
             return res.status(200).json({
+                "message": "Login Successful",
                 "fName": account.fName,
                 "lName": account.lName,
                 "email": account.email

@@ -43,7 +43,6 @@ export default function LoginForm(){
                 <button className="btn btn-primary text-light w-100 m-2">
                     Login
                 </button>
-
             </form>
         </>
     )

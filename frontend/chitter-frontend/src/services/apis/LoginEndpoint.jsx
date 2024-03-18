@@ -4,7 +4,7 @@ import axios from "axios";
 export default async function callLoginEndpoint({email, password}){
     try{
         const response = await axios.post(
-            "authentication/login",
+            "http://localhost:4000/authentication/login",
             {
                 "email": email,
                 "password": password,

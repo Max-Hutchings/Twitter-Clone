@@ -1,9 +1,15 @@
 import {useState} from "react";
 import callLoginEndpoint from "../../services/apis/LoginEndpoint.jsx";
-import {navigate} from "jsdom/lib/jsdom/living/window/navigation.js";
+
+import { useAuth } from "../../services/AuthContext.jsx";
+import {useNavigate} from "react-router-dom";
 
 
 export default function LoginForm(){
+
+    const { handleLogin } = useAuth();
+
+    const navigate = useNavigate();
 
     const [login, setLogin] = useState(
         {
@@ -14,7 +20,9 @@ export default function LoginForm(){
 
     async function submitLogin(){
         try{
-            await callLoginEndpoint(login);
+            const userDetails = await callLoginEndpoint(login);
+            if (userDetails.email.length < 2) throw new Error();
+            await handleLogin(userDetails);
             navigate("/");
         } catch (e){
             console.error("Login error:", e);

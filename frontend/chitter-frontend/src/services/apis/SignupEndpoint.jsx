@@ -4,7 +4,7 @@ import axios from "axios";
 export default async function callSignupEndpoint({fName, lName, username, email, password}){
     try{
         const response = await axios.post(
-            "/authentication/sign-up",
+            "http://localhost:4000/authentication/sign-up",
             {
                 "fName": fName,
                 "lName": lName,

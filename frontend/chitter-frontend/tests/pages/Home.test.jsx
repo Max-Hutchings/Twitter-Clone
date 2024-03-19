@@ -11,20 +11,25 @@ describe("Testing the home page renders correctly", () => {
 
     beforeEach(async() => {
 
-        callGetAllPeeps.mockResolvedValue({data: [
+        callGetAllPeeps.mockResolvedValue({
+            data: [
                 {
                     "textContent": "This is my peep",
+                    "createdDate": "2024-03-19T15:40:00.000Z",
                     "accountId": {
                         "username": "User 1",
-                    }
+                    },
                 },
                 {
                     "textContent": "another peep",
+                    "createdDate": "2024-03-19T15:30:00.000Z",
                     "accountId": {
                         "username": "User 2",
-                    }
+                    },
                 }
-            ]});
+            ]
+        });
+
 
         await render(
             <MemoryRouter>
@@ -56,11 +61,13 @@ describe("Testing the home page renders correctly", () => {
         const addPeepBtn = screen.getByRole("add-peep-btn");
         fireEvent.click(addPeepBtn);
 
-
-
         const createPeepModal = screen.getByRole("create-peep-modal");
         expect(createPeepModal).toBeInTheDocument();
     })
+
+    // it("Should render peeps in reverse chronological order", () => {
+    //
+    // })
 
     it("Should render 2 comment links", () => {
         const commentsLinks = screen.getAllByRole('open-comments-btn');

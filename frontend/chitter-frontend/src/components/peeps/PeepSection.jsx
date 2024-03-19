@@ -16,6 +16,9 @@ export default function PeepSection(){
     useEffect(() => {
         const fetchPeeps = async () => {
             const data = await callGetAllPeeps();
+            const sortedPeeps = data.data.sort((a, b) => {
+                return new Date(b.createdDate) - new Date(a.createdDate);
+            });
             setPeeps(data.data);
             setloading(false);
         };

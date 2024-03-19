@@ -1,5 +1,6 @@
 import axios from "axios";
 
+axios.defaults.withCredentials = true;
 
 export default async function callLoginEndpoint({email, password}){
     try{
@@ -8,7 +9,12 @@ export default async function callLoginEndpoint({email, password}){
             {
                 "email": email,
                 "password": password,
-            });
+            },
+            {
+                withCredentials: true
+            }
+            );
+        console.log(response)
         return response;
     }catch(e){
         console.log(`Login error: ` + e);

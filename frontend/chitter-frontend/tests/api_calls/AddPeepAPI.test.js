@@ -1,6 +1,6 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import callAddPeep from "../../src/services/apis/PostPeep.jsx";
+import callAddPeep from "../../src/services/apis/PostPeepEndpoint.jsx";
 
 describe('callAddPeep', () => {
     it('posts peep and returns response', async () => {

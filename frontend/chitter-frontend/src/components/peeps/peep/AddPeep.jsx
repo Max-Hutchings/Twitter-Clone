@@ -1,4 +1,5 @@
 import {useState} from "react";
+import callAddPeep from "../../../services/apis/PostPeepEndpoint.jsx";
 
 
 export default function AddPeep({closeModal}){
@@ -24,13 +25,23 @@ export default function AddPeep({closeModal}){
         zIndex: 1000 // Same zIndex to ensure it's under the modal
     };
 
-    const [peepform, setPeepForm] = useState("");
+    const [peepForm, setPeepForm] = useState("");
+
+    async function handlePostPeep(){
+        try{
+            const response = await callAddPeep({textContent: peepForm});
+            if (response.status !== 200) throw new Error();
+        }catch (e){
+            alert("Failed to post peep");
+            console.log(e);
+        }
+    }
 
     return(
         <>
         <div style={backdropStyle}></div>
             <div className="container rounded shadow-lg" style={modalStyle}>
-                <form>
+                <form onSubmit={(e) => {e.preventDefault(); handlePostPeep();}}>
                     <div className="d-flex justify-content-between align-items-center">
                         <h2 className={"m-2"}>Post Peep</h2>
                         <svg style={{cursor: "pointer"}} onClick={closeModal} xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
@@ -42,7 +53,7 @@ export default function AddPeep({closeModal}){
                     <textarea
                         className={"form-control mt-2 mb-2 ms-1 me-1"}
                         rows={3}
-                        value={peepform}
+                        value={peepForm}
                         placeholder={"Peep away..."}
                         onChange={(e) => {
                             setPeepForm(e.target.value)

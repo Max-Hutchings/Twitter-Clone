@@ -35,7 +35,7 @@ describe("Tests the /peep endpoints", () => {
             .post(ENDPOINT_PATH + "/add-peep")
             .send({"textContent": "This is my first peep! wow!"})
             .set("Cookie", `token=${token}`);
-        console.log(response);
+
         expect(response).to.have.status(200);
     })
 
@@ -45,7 +45,7 @@ describe("Tests the /peep endpoints", () => {
             .post(ENDPOINT_PATH + "/add-peep")
             .send({"textContent": ""})
             .set("Cookie", `token=${token}`);
-        console.log(response);
+
         expect(response).to.have.status(401);
     })
 })

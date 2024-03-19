@@ -26,15 +26,17 @@ router.route("/all-peeps").get(
 router.route("/add-peep").post(
     authenticateJWT,
     [
-        check("textContent").notEmpty()
+        check("textContent", "textContent is required").notEmpty()
     ],
     async (request, response) => {
+
+        console.log(request.body)
         const errors = validationResult(request);
         if (!errors.isEmpty()) return response.status(401).json({"message": "Failed to provide text content"});
-
+        console.log("completed verification checks")
         try {
             const userId = await getIDFromJWT(request.cookies.token);
-
+            console.log("got id from jwt")
             if (!userId) return response.status(401).json({"message": "Invalid token"});
 
             const newPeep = new Peep({

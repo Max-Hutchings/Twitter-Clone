@@ -21,8 +21,9 @@ export default function LoginForm(){
     async function submitLogin(){
         try{
             const userDetails = await callLoginEndpoint(login);
-            if (userDetails.email.length < 2) throw new Error();
-            await handleLogin(userDetails);
+            console.log(userDetails)
+            if (userDetails.status !== 200) throw new Error();
+            await handleLogin(userDetails.data);
             navigate("/");
         } catch (e){
             console.error("Login error:", e);

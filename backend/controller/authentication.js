@@ -79,13 +79,19 @@ router.route("/login").post(
             // reject incorrect password
             if (!passwordsMatch) return res.status(400).json({"message": "Invalid password"});
 
-            res.cookie("token", generateJWT(account._id), {httpOnly: true, sameSite: "strict"});
+            const jwt = await generateJWT(account._id);
 
-            return res.status(200).json({
-                "message": "Login Successful",
-                "fName": account.fName,
-                "lName": account.lName,
-                "email": account.email
+
+
+            return res
+                .cookie("token", jwt, {httpOnly: true, secure: true, sameSite: "none"})
+                .status(200).json({
+                    "message": "Login Successful",
+                    "token": jwt,
+                    "fName": account.fName,
+                    "lName": account.lName,
+                    "username": account.username,
+                    "email": account.email
             })
         } catch (e) {
             return res.status(500).json({

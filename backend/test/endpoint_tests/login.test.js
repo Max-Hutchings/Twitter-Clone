@@ -47,6 +47,7 @@ describe("Tests login endpoint", () => {
             .send(correctDetails);
         
         expect(response).to.have.status(200);
+        expect(response).to.have.cookie('token');
     })
 
     it ("Should fail login due to incorrect email", async() => {

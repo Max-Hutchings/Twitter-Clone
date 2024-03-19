@@ -9,13 +9,23 @@ export default function PeepSection(){
 
     const [createPeep, setCreatePeep] = useState(false);
     const [peeps, setPeeps] = useState([]);
+    const [loading, setloading] = useState(true);
 
 
     useEffect(() => {
-        const data = callGetAllPeeps();
-        setPeeps(data);
-        console.log(peeps)
+        const fetchPeeps = async () => {
+            const data = await callGetAllPeeps();
+            setPeeps(data.data);
+            setloading(false);
+        };
+
+        fetchPeeps();
     }, []);
+
+    useEffect(() => {
+        console.log(peeps)
+    },[loading])
+
 
 
     return(
@@ -25,11 +35,11 @@ export default function PeepSection(){
                 <div className="row justify-content-center">
                     <div className="col-10 col-lg-7  justify-content-center align-items-center"
                          style={{background: "lightgray"}}>
-
-                        <Peep/>
-                        <Peep/>
-                        <Peep/>
-                        <Peep/>
+                        {peeps.map((peep) => {
+                            return(
+                                <Peep textContent={peep.textContent} username={peep.accountId.username}/>
+                            )
+                        })}
 
                     </div>
                 </div>

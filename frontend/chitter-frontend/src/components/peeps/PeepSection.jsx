@@ -10,6 +10,7 @@ export default function PeepSection(){
     const [createPeep, setCreatePeep] = useState(false);
     const [peeps, setPeeps] = useState([]);
     const [loading, setloading] = useState(true);
+    const [addedPeep, setAddedPeep] = useState(0);
 
 
     useEffect(() => {
@@ -20,7 +21,7 @@ export default function PeepSection(){
         };
 
         fetchPeeps();
-    }, []);
+    }, [addedPeep]);
 
     useEffect(() => {
         console.log(peeps)
@@ -31,7 +32,7 @@ export default function PeepSection(){
     return(
         <>
             <div className="container" style={{minHeight: "100vh"}}>
-                {createPeep && <AddPeep closeModal={() => setCreatePeep(false)}/>}
+                {createPeep && <AddPeep closeModal={() => setCreatePeep(false)} setAddedPeep={setAddedPeep} addedPeep={addedPeep}/>}
                 <div className="row justify-content-center">
                     <div className="col-10 col-lg-7  justify-content-center align-items-center"
                          style={{background: "lightgray"}}>

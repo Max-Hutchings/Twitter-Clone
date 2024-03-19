@@ -2,7 +2,7 @@ import {useState} from "react";
 import callAddPeep from "../../../services/apis/PostPeepEndpoint.jsx";
 
 
-export default function AddPeep({closeModal}){
+export default function AddPeep({closeModal, setAddedPeep, addedPeep}){
 
     const modalStyle = {
         position: 'fixed',     // Fixed position to overlay on the screen
@@ -41,7 +41,7 @@ export default function AddPeep({closeModal}){
         <>
         <div style={backdropStyle}></div>
             <div className="container rounded shadow-lg" style={modalStyle}>
-                <form onSubmit={(e) => {e.preventDefault(); handlePostPeep();}}>
+                <form onSubmit={(e) => {e.preventDefault(); handlePostPeep(); setAddedPeep(addedPeep += 1)}}>
                     <div className="d-flex justify-content-between align-items-center">
                         <h2 className={"m-2"}>Post Peep</h2>
                         <svg style={{cursor: "pointer"}} onClick={closeModal} xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"

@@ -13,10 +13,10 @@ describe('callLoginEndpoint', () => {
     };
 
     it('should return the correct response on successful login', async () => {
-        mock.onPost("authentication/login").reply(200, mockResponse);
+        mock.onPost("http://localhost:4000/authentication/login").reply(200, mockResponse);
 
         const result = await callLoginEndpoint(loginData);
-        expect(result).toEqual(mockResponse);
+        expect(result.data).toEqual(mockResponse);
     });
 
 });

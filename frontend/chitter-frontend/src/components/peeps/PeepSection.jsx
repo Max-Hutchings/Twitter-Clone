@@ -20,7 +20,7 @@ export default function PeepSection(){
             <div className="container" style={{minHeight: "100vh"}}>
                 {createPeep && <AddPeep closeModal={() => setCreatePeep(false)}/>}
                 <div className="row justify-content-center">
-                    <div className="col-10 col-lg-7 justify-content-center align-items-center"
+                    <div className="col-10 col-lg-7  justify-content-center align-items-center"
                          style={{background: "lightgray"}}>
 
                         <Peep/>

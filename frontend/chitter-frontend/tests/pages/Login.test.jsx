@@ -1,14 +1,20 @@
 import {MemoryRouter} from "react-router-dom";
 import Login from "../../src/pages/Login.jsx";
 import {render, screen} from "@testing-library/react";
+import {AuthProvider} from "../../src/services/AuthContext.jsx";
 
 
 describe("Testing the login page", () => {
 
     it("Should render login form", () => {
+
+
+
         render(
             <MemoryRouter>
-                <Login />
+                <AuthProvider>
+                    <Login />
+                </AuthProvider>
             </MemoryRouter>
         )
 

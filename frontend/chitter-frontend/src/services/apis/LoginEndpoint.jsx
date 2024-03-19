@@ -9,7 +9,7 @@ export default async function callLoginEndpoint({email, password}){
                 "email": email,
                 "password": password,
             });
-        return response.data;
+        return response;
     }catch(e){
         console.log(`Login error: ` + e);
         return { error: e.response?.data || "Unknown error"};

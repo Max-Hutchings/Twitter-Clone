@@ -7,16 +7,16 @@ export default function Peep({username, textContent}){
         <>
 
                 <div className="d-flex flex-column align-items-start justify-content-start p-3 m-2 rounded mb-3" style={{background: "white"}}>
-                    <h6>
+                    <h6 role={"peep-username"}>
                         {username}
                     </h6>
-                    <p>{textContent}</p>
+                    <p role={"peep-content"}>{textContent}</p>
                     <div className="row justify-content-center w-100">
                         <div className="col-6 justify-content-center text-center">
-                            <Link className={"text-center text-decoration-none"}>Comments</Link>
+                            <Link role={"open-comments-btn"} className={"text-center text-decoration-none"}>Comments</Link>
                         </div>
                         <div className="col-6 justify-content-center text-center ">
-                            <Link className={"text-center text-decoration-none"}>Reply</Link>
+                            <Link role={"reply-btn"} className={"text-center text-decoration-none"}>Reply</Link>
                         </div>
                     </div>
                 </div>

@@ -22,7 +22,7 @@ export default function Navbar(){
 
     return(
         <>
-            <nav className="navbar navbar-expand-md bg-primary navbar-dark">
+            <nav className="navbar navbar-expand-md bg-primary navbar-dark" >
                 <div className="container">
                     <Link to={"/"} className="navbar-brand">
                         <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="white"

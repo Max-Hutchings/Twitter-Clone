@@ -14,7 +14,7 @@ export default function NewPeepBtn({setCreatePeep}){
 
     return (
 
-        <svg style={svgStyle} onClick={() => setCreatePeep(true)} xmlns="http://www.w3.org/2000/svg" width="35"
+        <svg role={"add-peep-btn"} style={svgStyle} onClick={() => setCreatePeep(true)} xmlns="http://www.w3.org/2000/svg" width="35"
              height="35" fill={"white"}
              className="bi bi-plus-square bg-primary" viewBox="0 0 16 16">
             <path

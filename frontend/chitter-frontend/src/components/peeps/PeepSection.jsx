@@ -7,7 +7,7 @@ import NewPeepBtn from "./peep/NewPeepBtn.jsx";
 
 export default function PeepSection(){
 
-    const [createPeep, setCreatePeep] = useState(false);
+    const [createPeepModal, setCreatePeepModal] = useState(false);
     const [peeps, setPeeps] = useState([]);
     const [loading, setloading] = useState(true);
     const [addedPeep, setAddedPeep] = useState(0);
@@ -31,8 +31,8 @@ export default function PeepSection(){
 
     return(
         <>
-            <div className="container" style={{minHeight: "100vh"}}>
-                {createPeep && <AddPeep closeModal={() => setCreatePeep(false)} setAddedPeep={setAddedPeep} addedPeep={addedPeep}/>}
+            <div role={"peep-feed"} className="container" style={{minHeight: "100vh"}}>
+                {createPeepModal && <AddPeep closeModal={() => setCreatePeepModal(false)} setAddedPeep={setAddedPeep} addedPeep={addedPeep}/>}
                 <div className="row justify-content-center">
                     <div className="col-10 col-lg-7  justify-content-center align-items-center"
                          style={{background: "lightgray"}}>
@@ -44,7 +44,7 @@ export default function PeepSection(){
 
                     </div>
                 </div>
-                <NewPeepBtn setCreatePeep={setCreatePeep} />
+                <NewPeepBtn setCreatePeep={setCreatePeepModal} />
             </div>
 
         </>

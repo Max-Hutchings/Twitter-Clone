@@ -40,7 +40,7 @@ export default function AddPeep({closeModal, setAddedPeep, addedPeep}){
     return(
         <>
         <div style={backdropStyle}></div>
-            <div className="container rounded shadow-lg" style={modalStyle}>
+            <div role={"create-peep-modal"} className="container rounded shadow-lg" style={modalStyle}>
                 <form onSubmit={(e) => {e.preventDefault(); handlePostPeep(); setAddedPeep(addedPeep += 1)}}>
                     <div className="d-flex justify-content-between align-items-center">
                         <h2 className={"m-2"}>Post Peep</h2>

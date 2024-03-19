@@ -46,6 +46,11 @@ describe("Testing the home page renders correctly", () => {
         expect(navbarElement).toBeInTheDocument()
     });
 
+    it("Should render the footer", () => {
+        const footerElement = screen.getByRole("footer");
+        expect(footerElement).toBeInTheDocument();
+    })
+
     it("Should render the peeps-feed on page", () => {
         const peepFeed = screen.getByRole("peep-feed");
         expect(peepFeed).toBeInTheDocument();
@@ -94,4 +99,5 @@ describe("Testing the home page renders correctly", () => {
         expect(usernameElements[1]).toHaveTextContent('User 2');
         expect(contentElements[1]).toHaveTextContent('another peep');
     });
+
 })

@@ -60,6 +60,7 @@ export async function createPeepComment(){
         await mongoose.connect(process.env.DB_URI);
         peepComment = new PeepComment({
             "peepId": peep._id.toString(),
+            "accountId": account._id.toString(),
             "commentText": "I dont like this peep"
         })
 

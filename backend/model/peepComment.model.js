@@ -8,6 +8,12 @@ const peepCommentSchema = new Schema({
         ref: "Peep"
     },
 
+    "accountId": {
+        type: mongoose.Schema.Types.ObjectId,
+        required: [true, "user must be identifiable"],
+        ref: "Account"
+    },
+
     "commentText": {
         type: String,
         required: [true, "No comment text provided"],

@@ -47,6 +47,7 @@ describe("Testing endpoints for peep comment", () => {
             .post(ENDPOINT + "/add-peep-comment")
             .send({
                 "peepId": peep._id.toString(),
+                "accountId": account._id.toString(),
                 "commentText": "This is my comment hating on the peep"})
             .set("Cookie", `token=${token}`);
 

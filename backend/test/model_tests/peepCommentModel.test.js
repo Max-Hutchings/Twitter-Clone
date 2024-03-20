@@ -24,6 +24,7 @@ describe("Tests the peep comment model", () => {
     it("Should add peep to the database", async() => {
         const newPeepComment = new PeepComment({
             "peepId": peep._id.toString(),
+            "accountId": account._id.toString(),
             "commentText": "I hate this peep"
         });
 
@@ -33,7 +34,8 @@ describe("Tests the peep comment model", () => {
 
     it("Should reject due to missing peepId", async () => {
         const newPeepComment = new PeepComment({
-            "commentText": "I hate this peep"
+            "commentText": "I hate this peep",
+            "accountId": account._id.toString(),
         });
 
         const error = newPeepComment.validateSync();
@@ -42,7 +44,8 @@ describe("Tests the peep comment model", () => {
 
     it("Should reject due to missing commentText", async () => {
         const newPeepComment = new PeepComment({
-            "peepId": peep._id.toString()
+            "peepId": peep._id.toString(),
+            "accountId": account._id.toString(),
         });
 
         const error = newPeepComment.validateSync();
@@ -52,7 +55,8 @@ describe("Tests the peep comment model", () => {
     it("Should reject due to invalid peepId type", async () => {
         const newPeepComment = new PeepComment({
             "peepId": "12345",
-            "commentText": "Invalid peepId type test"
+            "commentText": "Invalid peepId type test",
+            "accountId": account._id.toString(),
         });
 
         const error = newPeepComment.validateSync();
@@ -63,7 +67,8 @@ describe("Tests the peep comment model", () => {
         let longComment = "a".repeat(301);
         const newPeepComment = new PeepComment({
             "peepId": peep._id.toString(),
-            "commentText": longComment
+            "commentText": longComment,
+            "accountId": account._id.toString(),
         });
 
         const error = newPeepComment.validateSync();

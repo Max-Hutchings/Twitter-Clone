@@ -10,7 +10,8 @@ router.route("/:peepId").get(
     async(request, response) => {
         try{
             const peepId = request.params.peepId;
-            const comments = await PeepComment.find({"peepId": peepId });
+            const comments = await PeepComment.find({"peepId": peepId })
+                .populate('accountId', 'username');
             return response.status(200).json({
                 "message": `Successfully gathered comments for peep ${peepId}`,
                 "data": comments
@@ -30,7 +31,8 @@ router.route("/:peepId").get(
 router.route("/add-peep-comment").post(
     [
         check("commentText").notEmpty(),
-        check("peepId").notEmpty()
+        check("peepId").notEmpty(),
+        check("accountId").notEmpty()
     ],
     async(request, response) => {
         const errors = validationResult(request);
@@ -43,7 +45,8 @@ router.route("/add-peep-comment").post(
 
             const peepComment = new PeepComment({
                 "peepId": request.body.peepId,
-                "commentText": request.body.commentText
+                "commentText": request.body.commentText,
+                "accountId": request.body.accountId
             });
             await peepComment.save();
 

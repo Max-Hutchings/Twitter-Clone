@@ -41,7 +41,7 @@ export default function PeepSection(){
                          style={{background: "lightgray"}}>
                         {peeps.map((peep) => {
                             return(
-                                <Peep textContent={peep.textContent} username={peep.accountId.username}/>
+                                <Peep key={peep._id} textContent={peep.textContent} username={peep.accountId.username}/>
                             )
                         })}
 

@@ -4,10 +4,11 @@ import PeepReply from "../peep_comments/PeepReply.jsx";
 import CommentsSection from "../peep_comments/CommentsSection.jsx";
 
 
-export default function Peep({username, textContent}){
+export default function Peep({username, textContent, peepId}){
 
     const [openReply, setOpenReply] = useState(false);
     const [openComments, setOpenComments] = useState(false);
+    const [addedComment, setAddedComment] = useState(0);
 
     return(
         <>
@@ -22,13 +23,13 @@ export default function Peep({username, textContent}){
                             <Link onClick={(e) => setOpenComments(!openComments)} to={"#"} role={"open-comments-btn"} className={"text-center text-decoration-none"}>Comments</Link>
                         </div>
                         <div className="col-6 justify-content-center text-center ">
-                            <Link onClick={(e) => setOpenReply(!openReply)} to={"#"} role={"reply-btn"} className={"text-center text-decoration-none"}>Reply</Link>
+                            <Link onClick={(e) => {setOpenReply(!openReply); setOpenComments(true)}} to={"#"} role={"reply-btn"} className={"text-center text-decoration-none"}>Reply</Link>
                         </div>
                     </div>
                     {openReply &&
                         <div className="row w-100">
                             <div className="col-12">
-                                <PeepReply />
+                                <PeepReply setOpenReply={setOpenReply} peepId={peepId} addedComment={addedComment} setAddedComment={setAddedComment}/>
                             </div>
                         </div>
                     }
@@ -36,7 +37,7 @@ export default function Peep({username, textContent}){
                     {openComments &&
                         <div className="row w-100">
                             <div className="col-12">
-                                <CommentsSection />
+                                <CommentsSection peepId={peepId} addedComment={addedComment}/>
                             </div>
                         </div>
                     }

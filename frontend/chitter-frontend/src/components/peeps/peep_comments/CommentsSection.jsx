@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 import callGetComments from "../../../services/apis/GetCommentsEndpoint.jsx";
 
 
-export default function CommentsSection({peepId}){
+export default function CommentsSection({peepId, addedComment}){
 
     const [comments, setComments] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -11,8 +11,9 @@ export default function CommentsSection({peepId}){
     useEffect(() => {
         const fetchComments = async () => {
             try {
-                const data = await callGetComments({ peepId }); // Using await to wait for the promise to resolve
-                setComments(data);
+                const data = await callGetComments({ peepId });
+                const sortedComments = data.data.sort((a, b) => new Date(b.createdDate) - new Date(a.createdDate));
+                setComments(sortedComments);
                 setLoading(false);
             } catch (error) {
                 console.error('Error fetching comments:', error);
@@ -20,24 +21,19 @@ export default function CommentsSection({peepId}){
         };
 
         fetchComments();
-    }, [peepId]);
+    }, [peepId, addedComment]);
 
     return(
         <>
-            {/*{!loading &&*/}
-                {comments && comments.map((comment) => {
-                    return(
-                        <PeepComment key={comment._id} commentId={comment._id} commentUser={comment.accountId.username} commentText={comment.commentText}/>
-                    )
-                })}
-            {/*}*/}
-
-            {!comments &&
+            {!loading && comments.length > 0 ? (
+                comments.map((comment) => (
+                    <PeepComment key={comment._id} commentId={comment._id} commentUser={comment.accountId.username} commentText={comment.commentText}/>
+                ))
+            ) : (
                 <div>
                     No comments yet... be the first!
                 </div>
-            }
-
+            )}
         </>
     )
 }

@@ -9,8 +9,9 @@ export default function PeepSection(){
 
     const [createPeepModal, setCreatePeepModal] = useState(false);
     const [peeps, setPeeps] = useState([]);
-    const [loading, setloading] = useState(true);
+    const [loading, setLoading] = useState(true);
     const [addedPeep, setAddedPeep] = useState(0);
+
 
 
     useEffect(() => {
@@ -20,7 +21,7 @@ export default function PeepSection(){
                 return new Date(b.createdDate) - new Date(a.createdDate);
             });
             setPeeps(data.data);
-            setloading(false);
+            setLoading(false);
         };
 
         fetchPeeps();
@@ -40,8 +41,9 @@ export default function PeepSection(){
                     <div className="col-10 col-lg-7  justify-content-center align-items-center"
                          style={{background: "lightgray"}}>
                         {peeps.map((peep) => {
+                            console.log(peep)
                             return(
-                                <Peep key={peep._id} textContent={peep.textContent} username={peep.accountId.username}/>
+                                <Peep key={peep._id} peepId={peep._id} textContent={peep.textContent} username={peep.accountId.username}/>
                             )
                         })}
 

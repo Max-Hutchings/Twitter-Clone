@@ -1,8 +1,9 @@
 import axios from "axios";
 
 
-export default async function usePostPeepComment({peepId, commentText}){
+export default async function usePostPeepComment(peepId, commentText){
     try{
+        console.log(peepId)
         const response = await axios.post("http://localhost:4000/peep-comment/add-peep-comment",
             {
                 "peepId": peepId,

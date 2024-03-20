@@ -1,15 +1,15 @@
 
 
 
-export default function PeepComment({}){
+export default function PeepComment({commentUser, commentText}){
 
     return(
         <>
-            <div role={"peep-comment"} className={"border rounded p-2"}>
+            <div role={"peep-comment"} className={"border rounded p-2 mb-1"}>
                 <div className="row">
                     <div className="col-6" >
                         <span className={"small"} style={{fontWeight: "bold"}}>
-                            username
+                            {commentUser}
                         </span>
 
                     </div>
@@ -17,7 +17,7 @@ export default function PeepComment({}){
                 <div className="row">
                     <div className="col-12">
                         <span className="small">
-                            Comment text content
+                            {commentText}
                         </span>
                     </div>
                 </div>

@@ -87,7 +87,6 @@ router.route("/login").post(
                 .cookie("token", jwt, {httpOnly: true, secure: true, sameSite: "none"})
                 .status(200).json({
                     "message": "Login Successful",
-                    "token": jwt,
                     "fName": account.fName,
                     "lName": account.lName,
                     "username": account.username,
@@ -156,12 +155,19 @@ router.route("/validate-jwt").get(
             const userId = await getIDFromJWT(request.cookies.token);
             const account = await Account.findById(userId);
 
-            return response.status(200).json({
-                "message": "Successfully logged in as " + account.fName,
-                "fName": account.fName,
-                "lName": account.lName,
-                "email": account.email
-            })
+            if (!account) return response.status(401).json({message: "Failed to get user"});
+
+            const jwt = await generateJWT(account._id);
+
+            return response
+                .cookie("token", jwt, {httpOnly: true, secure: true, sameSite: "none"})
+                .status(200).json({
+                    "message": "Login Successful",
+                    "fName": account.fName,
+                    "lName": account.lName,
+                    "username": account.username,
+                    "email": account.email
+                })
         } catch (e) {
             return response.status(500).json({
                 "message": "Failed to get account",

@@ -1,7 +1,7 @@
 import {useState} from "react";
 import callLoginEndpoint from "../../services/apis/LoginEndpoint.jsx";
 
-import { useAuth } from "../../services/AuthContext.jsx";
+import { useAuth } from "../../services/context/AuthContext.jsx";
 import {useNavigate} from "react-router-dom";
 
 

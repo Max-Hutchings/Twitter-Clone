@@ -20,21 +20,21 @@ export function AuthProvider({children}){
     }
 
     async function handleLogout(){
-        setFName(null);
-        setlName(null);
-        setEmail(null);
-        setUsername(null);
+        setFName("");
+        setlName("");
+        setEmail("");
+        setUsername("");
         setLoggedIn(false);
     }
 
     // Using useEffect here because state updates can be asynchronous
-    useEffect(() => {
-        console.log("State changed:");
-        console.log(`Full name: ${fName} ${lName}`);
-        console.log(`Email: ${email}`);
-        console.log(`username: ${username}`);
-        console.log(`Logged in: ${loggedIn}`);
-    }, [fName, lName, email, username, loggedIn]);
+    // useEffect(() => {
+    //     console.log("State changed:");
+    //     console.log(`Full name: ${fName} ${lName}`);
+    //     console.log(`Email: ${email}`);
+    //     console.log(`username: ${username}`);
+    //     console.log(`Logged in: ${loggedIn}`);
+    // }, [fName, lName, email, username, loggedIn]);
 
     return(
         <AuthContext.Provider

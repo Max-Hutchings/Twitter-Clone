@@ -1,6 +1,6 @@
 import {Link, useNavigate} from "react-router-dom";
 import callLogoutEndpoint from "../../services/apis/LogoutEndpoint.jsx";
-import {useAuth} from "../../services/AuthContext.jsx";
+import {useAuth} from "../../services/context/AuthContext.jsx";
 
 export default function Navbar(){
 

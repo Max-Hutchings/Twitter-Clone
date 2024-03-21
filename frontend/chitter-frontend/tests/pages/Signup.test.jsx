@@ -1,7 +1,7 @@
 import Signup from "../../src/pages/Signup.jsx";
 import {render, screen} from "@testing-library/react";
 import {MemoryRouter} from "react-router-dom";
-import {AuthProvider} from "../../src/services/AuthContext.jsx";
+import {AuthProvider} from "../../src/services/context/AuthContext.jsx";
 
 
 describe("Testing signup page", () => {

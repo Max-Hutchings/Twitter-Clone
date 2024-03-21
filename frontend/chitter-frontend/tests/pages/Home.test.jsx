@@ -1,5 +1,5 @@
 import {MemoryRouter} from "react-router-dom";
-import {AuthProvider} from "../../src/services/AuthContext.jsx";
+import {AuthProvider} from "../../src/services/context/AuthContext.jsx";
 import Home from "../../src/pages/Home.jsx";
 import {fireEvent, render, screen, waitFor} from "@testing-library/react";
 import callGetAllPeeps from "../../src/services/apis/GetPeepsEndpoint.jsx";

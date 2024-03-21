@@ -32,13 +32,16 @@ router.route("/add-peep-comment").post(
     [
         check("commentText").notEmpty(),
         check("peepId").notEmpty(),
-        check("accountId").notEmpty()
+
     ],
     async(request, response) => {
+
+
         const errors = validationResult(request);
         if (!errors.isEmpty()) return response.status(401).json({"message": "Failed to provide required fields"});
 
         try {
+
             const userId = await getIDFromJWT(request.cookies.token)
 
             if (!userId) return response.status(401).json({"message": "Invalid token"});
@@ -46,7 +49,7 @@ router.route("/add-peep-comment").post(
             const peepComment = new PeepComment({
                 "peepId": request.body.peepId,
                 "commentText": request.body.commentText,
-                "accountId": request.body.accountId
+                "accountId": userId
             });
             await peepComment.save();
 

@@ -11,8 +11,8 @@ export default function CommentsSection({peepId, addedComment}){
     useEffect(() => {
         const fetchComments = async () => {
             try {
-                const data = await callGetComments({ peepId });
-                const sortedComments = data.data.sort((a, b) => new Date(b.createdDate) - new Date(a.createdDate));
+                const responseData = await callGetComments({ peepId });
+                const sortedComments = responseData.data.sort((a, b) => new Date(b.createdDate) - new Date(a.createdDate));
                 setComments(sortedComments);
                 setLoading(false);
             } catch (error) {
@@ -24,7 +24,7 @@ export default function CommentsSection({peepId, addedComment}){
     }, [peepId, addedComment]);
 
     return(
-        <>
+        <div role={"comment-section"}>
             {!loading && comments.length > 0 ? (
                 comments.map((comment) => (
                     <PeepComment key={comment._id} commentId={comment._id} commentUser={comment.accountId.username} commentText={comment.commentText}/>
@@ -34,6 +34,6 @@ export default function CommentsSection({peepId, addedComment}){
                     No comments yet... be the first!
                 </div>
             )}
-        </>
+        </div>
     )
 }

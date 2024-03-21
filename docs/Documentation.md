@@ -26,8 +26,17 @@
 
 ## Proof of Prioritisation
 ![img_8.png](img_8.png)
+![img_15.png](img_15.png)
 
+
+## Proof of git tags
+![img_12.png](img_12.png)
 
 ## Proof of AI
 ### Optimising/refactoring code
 ![img_11.png](img_11.png)
+
+
+### Testing: Building more edge case tests
+![img_13.png](img_13.png)
+![img_14.png](img_14.png)

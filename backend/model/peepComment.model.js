@@ -22,6 +22,10 @@ const peepCommentSchema = new Schema({
                 return value.length < 300;},
             message: "Text content too long"
         }
+    },
+    "createdDate": {
+        type: Date,
+        default: Date.now
     }
 })
 

@@ -15,11 +15,12 @@ export default function PeepReply({peepId, addedComment, setAddedComment, setOpe
 
     return(
         <>
-            <form onSubmit={(e)=>{e.preventDefault(); handlePostPeepAPI()}}>
+            <form role={"comment-form"} onSubmit={(e)=>{e.preventDefault(); handlePostPeepAPI()}}>
                 <div className="row w-100 m-2  rounded p-1">
                     <div className="col-11">
                         <input
                             type="text"
+                            role={"peep-reply-input-box"}
                             className="form-control form-control-sm"
                             value={replyText}
                             placeholder={"Reply..."}

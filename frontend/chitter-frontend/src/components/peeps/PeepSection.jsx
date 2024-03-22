@@ -34,7 +34,7 @@ export default function PeepSection(){
 
     return(
         <>
-            <div role={"peep-feed"} className="container" style={{minHeight: "100vh"}}>
+            <div role={"peep-feed"} className="container" >
                 {createPeepModal && <AddPeep closeModal={() => setCreatePeepModal(false)} setAddedPeep={setAddedPeep} addedPeep={addedPeep}/>}
                 <div className="row justify-content-center">
                     <div className="col-10 col-lg-7  justify-content-center align-items-center"

@@ -26,7 +26,7 @@ router.route("/sign-up").post(
 
         // IF errors
         if (!errors.isEmpty()) {
-            return response.status(412).json({
+            return response.status(400).json({
                 "message": "Invalid user details",
                 "errors": errors.array()
             })
@@ -71,13 +71,13 @@ router.route("/login").post(
         }
         try {
             const account = await Account.findOne({email: req.body.email}).exec();
-            if (!account) return res.status(400).json({"message": "Account not found"});
+            if (!account) return res.status(401).json({"message": "Account not found"});
 
             // Password check
             const passwordsMatch = await bcrypt.compare(req.body.password, account.password);
 
             // reject incorrect password
-            if (!passwordsMatch) return res.status(400).json({"message": "Invalid password"});
+            if (!passwordsMatch) return res.status(401).json({"message": "Invalid password"});
 
             const jwt = await generateJWT(account._id);
 

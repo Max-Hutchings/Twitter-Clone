@@ -49,7 +49,7 @@ describe("Test sign up endpoint", () => {
             .post(TESTPATH)
             .send(noFNameSignUp);
         
-        expect(res).to.have.status(412);
+        expect(res).to.have.status(400);
         expect(res.body).to.have.property("message", "Invalid user details");
     })
 
@@ -58,7 +58,7 @@ describe("Test sign up endpoint", () => {
             .post(TESTPATH)
             .send(noLNameSignUp)
 
-        expect(res).to.have.status(412);
+        expect(res).to.have.status(400);
         expect(res.body).to.have.property("message", "Invalid user details");
     })
 
@@ -68,7 +68,7 @@ describe("Test sign up endpoint", () => {
             .post(TESTPATH)
             .send(incorrectEmailSignUp);
         
-        expect(res).to.have.status(412);
+        expect(res).to.have.status(400);
         expect(res.body).to.have.property("message", "Invalid user details");
     })
 
@@ -77,7 +77,7 @@ describe("Test sign up endpoint", () => {
             .post(TESTPATH)
             .send(incorrectPasswordSignUp);
 
-        expect(res).to.have.status(412);
+        expect(res).to.have.status(400);
         expect(res.body).to.have.property("message", "Invalid user details");
     });
 

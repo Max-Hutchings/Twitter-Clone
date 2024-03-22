@@ -46,6 +46,6 @@ describe("Tests the /peep endpoints", () => {
             .send({"textContent": ""})
             .set("Cookie", `token=${token}`);
 
-        expect(response).to.have.status(401);
+        expect(response).to.have.status(400);
     })
 })

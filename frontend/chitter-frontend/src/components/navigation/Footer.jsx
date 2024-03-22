@@ -7,7 +7,7 @@ export default function Footer(){
         <>
 
         <footer role={"footer"} className="d-flex justify-content-center align-items-center bg-primary text-light" style={{height: "50px"}}>
-            @Copyright ChitterLtd
+            ©Copyright ChitterLtd
         </footer>
         </>
     )

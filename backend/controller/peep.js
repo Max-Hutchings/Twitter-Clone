@@ -32,11 +32,10 @@ router.route("/add-peep").post(
 
         console.log(request.body)
         const errors = validationResult(request);
-        if (!errors.isEmpty()) return response.status(401).json({"message": "Failed to provide text content"});
+        if (!errors.isEmpty()) return response.status(400).json({"message": "Failed to provide text content"});
         console.log("completed verification checks")
         try {
             const userId = await getIDFromJWT(request.cookies.token);
-            console.log("got id from jwt")
             if (!userId) return response.status(401).json({"message": "Invalid token"});
 
             const newPeep = new Peep({

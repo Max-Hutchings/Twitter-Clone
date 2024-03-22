@@ -55,7 +55,7 @@ describe("Tests login endpoint", () => {
             .post(TESTPATH)
             .send(incorrectEmail);
 
-        expect(response).to.have.status(400);
+        expect(response).to.have.status(401);
         expect(response.body).to.have.property("message", "Account not found");
     })
 })

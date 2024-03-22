@@ -1,28 +1,37 @@
 import {MemoryRouter} from "react-router-dom";
 import {AuthProvider} from "../../src/services/context/AuthContext.jsx";
 import Home from "../../src/pages/Home.jsx";
-import {fireEvent, render, screen, waitFor} from "@testing-library/react";
+import {act, fireEvent, render, screen, waitFor} from "@testing-library/react";
 import callGetAllPeeps from "../../src/services/apis/GetPeepsEndpoint.jsx";
 import callGetComments from "../../src/services/apis/GetCommentsEndpoint.jsx";
 import {getAllCommentsData, getAllPeepsData, getComments} from "./mock_data/HomeMockData.jsx";
+import RenderHomeWithLoggedIn from "./mock_data/settingAuthContext.jsx";
 
 
 vi.mock("../../src/services/apis/GetPeepsEndpoint.jsx");
 vi.mock("../../src/services/apis/GetCommentsEndpoint.jsx");
+
+
+
+
+
 
 describe("Testing Home page", () => {
 
     beforeEach(async() => {
         callGetAllPeeps.mockResolvedValue(getAllPeepsData);
         callGetComments.mockResolvedValue(getComments);
-        await render(
-            <MemoryRouter>
-                <AuthProvider>
-                    <Home />
-                </AuthProvider>
-            </MemoryRouter>
-        )
-    })
+        await act(async() => {
+            render(
+                <MemoryRouter>
+                    <AuthProvider>
+                        <RenderHomeWithLoggedIn />
+                    </AuthProvider>
+                </MemoryRouter>
+            )
+        })
+        }
+    )
 
 
     describe("Testing nav and footer", () => {

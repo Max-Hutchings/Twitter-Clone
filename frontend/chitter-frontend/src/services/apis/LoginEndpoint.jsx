@@ -14,7 +14,6 @@ export default async function callLoginEndpoint({email, password}){
                 withCredentials: true
             }
             );
-        console.log(response)
         return response;
     }catch(e){
         console.log(`Login error: ` + e);

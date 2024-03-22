@@ -174,7 +174,5 @@ router.route("/validate-jwt").get(
                 "errors": e.message
             })
         }
-
-
     }
 )

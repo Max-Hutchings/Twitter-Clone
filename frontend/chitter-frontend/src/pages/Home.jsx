@@ -6,9 +6,14 @@ export default function Home(){
 
     return(
         <>
-            <Navbar />
-            <PeepSection />
-            <Footer />
+            <div className="d-flex flex-column justify-content-between" style={{height: "100vh"}}>
+                <Navbar />
+                <div className="container-fluid mt-2 mb-2">
+                    <PeepSection />
+                </div>
+
+                <Footer />
+            </div>
         </>
     )
 }

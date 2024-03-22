@@ -30,13 +30,12 @@ describe("Tests the /validate-jwt endpoint ", async () => {
 
         account = await account.save();
         token = await jwt.sign({userId: account._id.toString()}, process.env.JWT_SECRET, {expiresIn: "1h"});
-        // console.log(account);
-        // console.log(token);
+
     })
 
     after(async () => {
         await Account.deleteMany();
-        // await mongoose.disconnect();
+
     });
 
     it("Should validate and provide user details", async () => {
@@ -47,6 +46,7 @@ describe("Tests the /validate-jwt endpoint ", async () => {
         expect(response).to.have.status(200);
         expect(response.body.fName).to.equal("Max");
         expect(response.body.lName).to.equal("Hutchings");
+        expect(response.body.username).to.equal("donut_lover");
         expect(response.body.email).to.equal("max@gmail.com");
 
     })

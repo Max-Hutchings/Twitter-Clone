@@ -58,6 +58,14 @@ export default function Navbar(){
                                     </Link>
                                 </li>
                             )}
+                            {!loggedIn &&
+                                <li className="nav-item nav-link text-decoration-none"
+                                    style={{cursor: "pointer", color: "white", fontSize: "1.3rem"}}>
+                                    <Link to={"/signup"} className="text-white text-decoration-none">
+                                        Sign up
+                                    </Link>
+                                </li>
+                            }
                         </ul>
                     </div>
                 </div>

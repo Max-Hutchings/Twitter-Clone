@@ -3,10 +3,12 @@ import {useEffect, useState} from "react";
 import AddPeep from "./peep/AddPeep.jsx";
 import callGetAllPeeps from "../../services/apis/GetPeepsEndpoint.jsx";
 import NewPeepBtn from "./peep/NewPeepBtn.jsx";
+import {useAuth} from "../../services/context/AuthContext.jsx";
 
 
 export default function PeepSection(){
 
+    const {loggedIn} = useAuth();
     const [createPeepModal, setCreatePeepModal] = useState(false);
     const [peeps, setPeeps] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -27,9 +29,6 @@ export default function PeepSection(){
         fetchPeeps();
     }, [addedPeep]);
 
-    useEffect(() => {
-        console.log(peeps)
-    },[loading])
 
 
 
@@ -39,9 +38,8 @@ export default function PeepSection(){
                 {createPeepModal && <AddPeep closeModal={() => setCreatePeepModal(false)} setAddedPeep={setAddedPeep} addedPeep={addedPeep}/>}
                 <div className="row justify-content-center">
                     <div className="col-10 col-lg-7  justify-content-center align-items-center"
-                         style={{background: "lightgray"}}>
+                         >
                         {peeps.map((peep) => {
-                            console.log(peep)
                             return(
                                 <Peep key={peep._id} peepId={peep._id} textContent={peep.textContent} username={peep.accountId.username}/>
                             )
@@ -49,7 +47,7 @@ export default function PeepSection(){
 
                     </div>
                 </div>
-                <NewPeepBtn setCreatePeep={setCreatePeepModal} />
+                {loggedIn && <NewPeepBtn setCreatePeep={setCreatePeepModal} />}
             </div>
 
         </>

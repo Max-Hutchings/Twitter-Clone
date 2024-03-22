@@ -30,9 +30,13 @@ export default function SignupForm(){
 
     return(
         <>
-            <form onSubmit={(e) => {e.preventDefault(); submitSignup();}} >
-                    <div className="row m-2">
-                        <div className="col-6">
+            <div className="container">
+                <form onSubmit={(e) => {
+                    e.preventDefault();
+                    submitSignup();
+                }}>
+                    <div className="row m-2 p-0 d-flex justify-content-between w-100">
+                        <div className="col-5 p-0">
                             <input
                                 className={"form-control w-100"}
                                 type="text"
@@ -41,7 +45,7 @@ export default function SignupForm(){
                                 onChange={(e) => setSignup({...signup, fName: e.target.value})}
                             />
                         </div>
-                        <div className="col-6">
+                        <div className="col-6 p-0">
                             <input
                                 className={"form-control w-100"}
                                 type="text"
@@ -61,7 +65,9 @@ export default function SignupForm(){
                         type="text"
                         value={signup.username}
                         placeholder={"Username"}
-                        onChange={(e) => {setSignup({...signup, username: e.target.value})}}
+                        onChange={(e) => {
+                            setSignup({...signup, username: e.target.value})
+                        }}
                     />
 
                     <input
@@ -84,7 +90,9 @@ export default function SignupForm(){
                         Sign Up
                     </button>
 
-            </form>
+                </form>
+            </div>
+
         </>
     )
 }

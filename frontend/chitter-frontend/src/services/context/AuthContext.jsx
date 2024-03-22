@@ -1,5 +1,4 @@
-import {useContext, useState, createContext, useEffect} from "react";
-
+import {useContext, useState, createContext} from "react";
 
 const AuthContext = createContext();
 
@@ -10,31 +9,29 @@ export function AuthProvider({children}){
     const [username, setUsername] = useState("");
     const [loggedIn, setLoggedIn] = useState(false);
 
-
-    async function handleLogin({fName, lName, email, username}){
-        setFName(fName);
-        setlName(lName);
-        setUsername(username);
-        setEmail(email);
-        setLoggedIn(true);
+    function handleLogin({fName, lName, email, username}){
+        try {
+            setFName(fName);
+            setlName(lName);
+            setUsername(username);
+            setEmail(email);
+            setLoggedIn(true);
+        } catch (error) {
+            console.error(error);
+        }
     }
 
-    async function handleLogout(){
-        setFName("");
-        setlName("");
-        setEmail("");
-        setUsername("");
-        setLoggedIn(false);
+    function handleLogout(){
+        try {
+            setFName("");
+            setlName("");
+            setEmail("");
+            setUsername("");
+            setLoggedIn(false);
+        } catch (error) {
+            console.error(error);
+        }
     }
-
-    // Using useEffect here because state updates can be asynchronous
-    // useEffect(() => {
-    //     console.log("State changed:");
-    //     console.log(`Full name: ${fName} ${lName}`);
-    //     console.log(`Email: ${email}`);
-    //     console.log(`username: ${username}`);
-    //     console.log(`Logged in: ${loggedIn}`);
-    // }, [fName, lName, email, username, loggedIn]);
 
     return(
         <AuthContext.Provider
@@ -47,4 +44,3 @@ export function AuthProvider({children}){
 export function useAuth(){
     return useContext(AuthContext);
 }
-

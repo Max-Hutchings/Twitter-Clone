@@ -159,6 +159,8 @@ SPA's don't require a new call to the server for every load. The browser has the
 ![img_21.png](img_21.png)
 3
 ![img_22.png](img_22.png)
+4
+![img_23.png](img_23.png)
 
 
 ## Testing: Building more edge case tests

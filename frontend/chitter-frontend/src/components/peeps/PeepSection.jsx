@@ -39,9 +39,9 @@ export default function PeepSection(){
                 <div className="row justify-content-center">
                     <div className="col-10 col-lg-7  justify-content-center align-items-center"
                          >
-                        {peeps.map((peep) => {
+                        {peeps.map((peep, index) => {
                             return(
-                                <Peep key={peep._id} peepId={peep._id} textContent={peep.textContent} username={peep.accountId.username}/>
+                                <Peep key={index} peepId={peep._id} textContent={peep.textContent} username={peep.accountId.username}/>
                             )
                         })}
 

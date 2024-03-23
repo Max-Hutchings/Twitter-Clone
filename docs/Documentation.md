@@ -163,8 +163,29 @@ SPA's don't require a new call to the server for every load. The browser has the
 ![img_23.png](img_23.png)
 
 
-## Testing: Building more edge case tests
+## Testing: Building more edge cases
+1
 ![img_13.png](img_13.png)
 ![img_14.png](img_14.png)
+## Testing: Generating tests and/or code for tests
 ![img_17.png](img_17.png)
+## Testing: Identifying and generating further edge cases
 ![img_18.png](img_18.png)
+
+
+## Improving code efficiency 
+![img_24.png](img_24.png)
+![img_25.png](img_25.png)
+
+## Debugging
+1
+![img_26.png](img_26.png)
+2
+![img_27.png](img_27.png)
+3
+![img_28.png](img_28.png)
+
+## For documenting code
+![img_29.png](img_29.png)
+![img_30.png](img_30.png)
+

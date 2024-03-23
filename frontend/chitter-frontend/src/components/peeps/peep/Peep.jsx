@@ -15,6 +15,19 @@ export default function Peep({username, textContent, peepId}){
     const [openComments, setOpenComments] = useState(false);
     const [addedComment, setAddedComment] = useState(0);
 
+    async function handleReplyBtn(){
+        await setOpenReply(!openReply);
+        // If reply open but comments closed, dont re-open comments.
+        if (openReply && !openComments) setOpenReply(!openReply);
+        // If comments open and reply closed, dont close comments.
+        if (openComments && !openReply) setOpenReply(!openReply);
+        // If both open, close both.// If both closed, open both
+        if (openReply === openComments){
+            setOpenComments(!openComments);
+            setOpenReply(!openReply);
+        }
+    }
+
     return(
         <>
 
@@ -29,7 +42,7 @@ export default function Peep({username, textContent, peepId}){
                         </div>
                         {loggedIn &&
                             <div className="col-6 justify-content-center text-center ">
-                                <Link onClick={(e) => {setOpenReply(!openReply); setOpenComments(true)}} to={"#"} role={"reply-btn"} className={"text-center text-decoration-none"}>Reply</Link>
+                                <Link onClick={(e) => handleReplyBtn()} to={"#"} role={"reply-btn"} className={"text-center text-decoration-none"}>Reply</Link>
                             </div>
                         }
                     </div>

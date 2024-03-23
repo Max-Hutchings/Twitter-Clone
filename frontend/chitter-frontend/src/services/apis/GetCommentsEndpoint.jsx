@@ -9,8 +9,6 @@ export default async function callGetComments({peepId}){
                 withCredentials: true
             }
             );
-        console.log("called get comments")
-        console.log(response.data)
         return response.data;
     }catch(e){
         console.log("Failed to get comments");

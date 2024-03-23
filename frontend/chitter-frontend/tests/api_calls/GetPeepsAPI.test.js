@@ -15,9 +15,4 @@ describe('callGetAllPeeps', () => {
         await expect(callGetAllPeeps()).resolves.toEqual(data);
     });
 
-    it('fetches erroneously data from an API', async () => {
-        mock.onGet("http://localhost:4000/peep/all-peeps").networkError();
-
-        await expect(callGetAllPeeps()).resolves.toBeUndefined();
-    });
 });

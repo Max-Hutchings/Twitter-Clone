@@ -10,31 +10,36 @@ import validateInput from "../middleware/validateInput.js";
 import {createAccount} from "../helper_functions/accountCreation.js";
 import errorHandler from "../middleware/errorHandler.js";
 
-
+// Creating a new router object
 export const router = express.Router();
 
-
+// Defining a new route for user sign-up
 router.route("/sign-up").post(
     [
+        // Input validation checks using express-validator
         check('fName', 'First name is required').not().isEmpty(),
         check('lName', 'Last name is required').not().isEmpty(),
         check("username", "Please include username").not().isEmpty(),
         check('email', 'Please include a valid email').isEmail(),
         check('password', 'Please enter a password with 6 or more characters').isLength({min: 6})
     ],
-    validateInput,
+    validateInput, // Middleware for validating the input
     async (request, response, next) => {
+        // If there's an error in the request, pass it to the next middleware
         if (request.error) {
             return next(request.error);
         }
         try {
+            // Create a new account using the request body
             const newAccount = await createAccount(request.body);
+            // If successful, send a success message
             return response.status(200).json({"message": "Successfully create account"});
         } catch (error) {
+            // If there's an error, pass it to the next middleware
             next(error);
         }
     },
-    errorHandler
+    errorHandler // Error handling middleware
 );
 
 

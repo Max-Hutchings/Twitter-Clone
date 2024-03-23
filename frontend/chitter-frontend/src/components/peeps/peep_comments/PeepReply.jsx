@@ -6,7 +6,7 @@ export default function PeepReply({peepId, addedComment, setAddedComment, setOpe
 
     const [replyText, setReplyText] = useState("");
 
-    async function handlePostPeepAPI() {
+    async function handlePostPeepCommentAPI() {
         await usePostPeepComment(peepId, replyText);
         setAddedComment(addedComment += 1);
         setReplyText("");
@@ -15,7 +15,7 @@ export default function PeepReply({peepId, addedComment, setAddedComment, setOpe
 
     return(
         <>
-            <form role={"comment-form"} onSubmit={(e)=>{e.preventDefault(); handlePostPeepAPI()}}>
+            <form role={"comment-form"} onSubmit={(e)=>{e.preventDefault(); handlePostPeepCommentAPI()}}>
                 <div className="row w-100 m-2  rounded p-1">
                     <div className="col-11">
                         <input

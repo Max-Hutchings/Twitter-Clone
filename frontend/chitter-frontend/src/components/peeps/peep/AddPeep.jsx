@@ -31,6 +31,8 @@ export default function AddPeep({closeModal, setAddedPeep, addedPeep}){
         try{
             const response = await callAddPeep({textContent: peepForm});
             if (response.status !== 200) throw new Error();
+            setAddedPeep(addedPeep += 1);
+            closeModal();
         }catch (e){
             alert("Failed to post peep");
             console.log(e);
@@ -41,7 +43,7 @@ export default function AddPeep({closeModal, setAddedPeep, addedPeep}){
         <>
         <div style={backdropStyle}></div>
             <div role={"create-peep-modal"} className="container rounded shadow-lg" style={modalStyle}>
-                <form onSubmit={(e) => {e.preventDefault(); handlePostPeep(); setAddedPeep(addedPeep += 1)}}>
+                <form onSubmit={(e) => {e.preventDefault(); handlePostPeep();}}>
                     <div className="d-flex justify-content-between align-items-center">
                         <h2 className={"m-2"}>Post Peep</h2>
                         <svg style={{cursor: "pointer"}} onClick={closeModal} xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"

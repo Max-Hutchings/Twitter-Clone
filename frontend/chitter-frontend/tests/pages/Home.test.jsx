@@ -1,7 +1,6 @@
 import {MemoryRouter} from "react-router-dom";
 import {AuthProvider} from "../../src/services/context/AuthContext.jsx";
-import Home from "../../src/pages/Home.jsx";
-import {act, fireEvent, render, screen, waitFor} from "@testing-library/react";
+import { act, fireEvent, render, screen, waitFor} from "@testing-library/react";
 import callGetAllPeeps from "../../src/services/apis/GetPeepsEndpoint.jsx";
 import callGetComments from "../../src/services/apis/GetCommentsEndpoint.jsx";
 import {getAllCommentsData, getAllPeepsData, getComments} from "./mock_data/HomeMockData.jsx";
@@ -59,9 +58,12 @@ describe("Testing Home page", () => {
             expect(addPeepBtn).toBeInTheDocument();
         })
 
-        it("Clicking addPeepBtn should set createPeepModal to true", () =>{
+        it("Clicking addPeepBtn should set createPeepModal to true", async() =>{
             const addPeepBtn = screen.getByRole("add-peep-btn");
-            fireEvent.click(addPeepBtn);
+             await act(() => {
+                fireEvent.click(addPeepBtn);
+            })
+
 
             const createPeepModal = screen.getByRole("create-peep-modal");
             expect(createPeepModal).toBeInTheDocument();
@@ -97,17 +99,23 @@ describe("Testing Home page", () => {
 
     describe('Testing comments and reply for peeps', () => {
 
-        it("Clicking comments btn should open the comments section", () => {
+        it("Clicking comments btn should open the comments section", async() => {
             const commentsBtn = screen.getAllByRole('open-comments-btn');
-            fireEvent.click(commentsBtn[0]);
+             await act(() =>{
+                fireEvent.click(commentsBtn[0]);
+            })
+
 
             const commentSection = screen.getByRole("comment-section");
             expect(commentSection).toBeInTheDocument();
         })
 
-        it("Clicking reply btn should open reply and comment section", () => {
+        it("Clicking reply btn should open reply and comment section", async () => {
             const replyBtn = screen.getAllByRole('reply-btn');
-            fireEvent.click(replyBtn[0]);
+             await act(() =>{
+                fireEvent.click(replyBtn[0]);
+            })
+
 
             const commentForm = screen.getByRole("comment-form");
             expect(commentForm).toBeInTheDocument();
@@ -118,7 +126,11 @@ describe("Testing Home page", () => {
 
         it("Comments section should render 2 comments", async() => {
             const commentsBtn = screen.getAllByRole('open-comments-btn');
-            fireEvent.click(commentsBtn[0]);
+             await act(() => {
+                fireEvent.click(commentsBtn[0]);
+            })
+
+
 
             const comments = await waitFor(() => screen.getAllByRole("peep-comment"));
             expect(comments).toHaveLength(4);
@@ -129,7 +141,9 @@ describe("Testing Home page", () => {
 
             beforeEach(async() => {
                 const commentsBtn = screen.getAllByRole('open-comments-btn');
-                fireEvent.click(commentsBtn[0]);
+                 await act(() =>{
+                    fireEvent.click(commentsBtn[0]);
+                })
 
                 await waitFor(() => screen.getAllByRole("peep-comment"));
             })
@@ -192,7 +206,10 @@ describe("Testing Home page", () => {
 
             beforeEach(async() => {
                 const replyBtn = screen.getAllByRole('reply-btn');
-                fireEvent.click(replyBtn[0]);
+                 await act(async () =>{
+                    fireEvent.click(replyBtn[0]);
+                })
+
 
                 await waitFor(() => screen.getAllByRole("peep-comment"));
 

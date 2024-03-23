@@ -1,8 +1,8 @@
 import express from "express";
 import Peep from "../model/peep.model.js";
-import authenticateJWT from "../validators/verifyJWT.js";
+import authenticateJWT from "../middleware/verifyJWT.js";
 import {check, validationResult} from "express-validator";
-import getIDFromJWT from "../validators/getIDFromJWT.js";
+import getIDFromJWT from "../middleware/getIDFromJWT.js";
 
 
 export const router = express.Router();

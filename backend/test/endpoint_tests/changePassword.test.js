@@ -1,5 +1,5 @@
 import Account from "../../model/account.model.js"
-import hashPassword from "../../validators/hashPassword.js";
+import hashPassword from "../../middleware/hashPassword.js";
 
 import chai, {expect} from "chai";
 import chaiHttp from "chai-http";

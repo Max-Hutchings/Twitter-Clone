@@ -1,5 +1,5 @@
-import GenerateJWT from "../../validators/generateJWT.js";
-import getIDFromJWT from "../../validators/getIDFromJWT.js";
+import GenerateJWT from "../../middleware/generateJWT.js";
+import getIDFromJWT from "../../middleware/getIDFromJWT.js";
 import {assert, expect} from "chai";
 
 

@@ -1,7 +1,7 @@
 import express from "express";
 import PeepComment from "../model/peepComment.model.js";
 import {check, validationResult} from "express-validator";
-import getIDFromJWT from "../validators/getIDFromJWT.js";
+import getIDFromJWT from "../middleware/getIDFromJWT.js";
 
 
 export const router = express.Router();

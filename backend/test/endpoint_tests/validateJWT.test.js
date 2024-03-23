@@ -1,6 +1,6 @@
-import hashPassword from "../../validators/hashPassword.js";
+import hashPassword from "../../middleware/hashPassword.js";
 import Account from "../../model/account.model.js";
-import generateJWT from "../../validators/generateJWT.js";
+import generateJWT from "../../middleware/generateJWT.js";
 import chaiHttp from "chai-http";
 import chai, {expect} from "chai";
 import server from "../../server.js";

@@ -7,7 +7,7 @@ import cookieParser from 'cookie-parser';
 import {router as authentication} from "./controller/authentication.js";
 import {router as peep} from "./controller/peep.js";
 import {router as peepComment} from "./controller/peepComment.js";
-import authenticateJWT from "./validators/verifyJWT.js";
+import authenticateJWT from "./middleware/verifyJWT.js";
 
 
 dotenv.config({ path: `./.env.${process.env.NODE_ENV}` });

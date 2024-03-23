@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import PeepComment from "../../model/peepComment.model.js";
 import Peep from "../../model/peep.model.js";
 import Account from "../../model/account.model.js";
-import hashPassword from "../../validators/hashPassword.js";
+import hashPassword from "../../middleware/hashPassword.js";
 
 dotenv.config({ path: `./.env.${process.env.NODE_ENV}` });
 

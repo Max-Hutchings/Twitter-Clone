@@ -4,7 +4,7 @@ import {tooLongString} from "../test_data/peepModelTestData.js";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import Account from "../../model/account.model.js";
-import hashPassword from "../../validators/hashPassword.js";
+import hashPassword from "../../middleware/hashPassword.js";
 
 dotenv.config({ path: `./.env.${process.env.NODE_ENV}` });
 

@@ -2,16 +2,18 @@ import express from "express";
 import {check, validationResult} from "express-validator";
 import bcrypt from "bcrypt";
 import Account from "../model/account.model.js";
-import hashPassword from "../validators/hashPassword.js";
-import generateJWT from "../validators/generateJWT.js";
-import getIDFromJWT from "../validators/getIDFromJWT.js";
-import authenticateJWT from "../validators/verifyJWT.js";
+import hashPassword from "../middleware/hashPassword.js";
+import generateJWT from "../middleware/generateJWT.js";
+import getIDFromJWT from "../middleware/getIDFromJWT.js";
+import authenticateJWT from "../middleware/verifyJWT.js";
+import validateInput from "../middleware/validateInput.js";
+import {createAccount} from "../helper_functions/accountCreation.js";
+import errorHandler from "../middleware/errorHandler.js";
 
 
 export const router = express.Router();
 
 
-// POST create account endpoint
 router.route("/sign-up").post(
     [
         check('fName', 'First name is required').not().isEmpty(),
@@ -19,43 +21,21 @@ router.route("/sign-up").post(
         check("username", "Please include username").not().isEmpty(),
         check('email', 'Please include a valid email').isEmail(),
         check('password', 'Please enter a password with 6 or more characters').isLength({min: 6})
-
     ],
-    async (request, response) => {
-        const errors = validationResult(request);
-
-        // IF errors
-        if (!errors.isEmpty()) {
-            return response.status(400).json({
-                "message": "Invalid user details",
-                "errors": errors.array()
-            })
+    validateInput,
+    async (request, response, next) => {
+        if (request.error) {
+            return next(request.error);
         }
-
         try {
-            const hashedPassword = await hashPassword(request.body.password);
-            const accountDetails = {
-                "fName": request.body.fName,
-                "lName": request.body.lName,
-                "username": request.body.username,
-                "email": request.body.email,
-                "password": hashedPassword,
-            }
-            const newAccount = new Account(accountDetails);
-            // Using mongoose to handle saving to repository
-            await newAccount.save()
-            // console.log("Account saved")
+            const newAccount = await createAccount(request.body);
             return response.status(200).json({"message": "Successfully create account"});
         } catch (error) {
-            console.log(error.message);
-            response.status(422).json({
-
-                "message": "Failed to sign up",
-                "error": error.message
-            })
+            next(error);
         }
-    }
-)
+    },
+    errorHandler
+);
 
 
 router.route("/login").post(

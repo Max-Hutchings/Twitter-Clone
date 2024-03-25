@@ -2,7 +2,7 @@
 
 # Installation Instructions
 - clone repository
-- add .evn.dev file to the root of the backend folder.
+- add .env.dev file to the root of the backend folder.
 ```
 PORT=4000
 DB_URI=mongodb://localhost:27017/challenge-6-chitter

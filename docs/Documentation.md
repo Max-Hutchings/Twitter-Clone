@@ -1,38 +1,38 @@
 # Challenge 6 - Chitter FullStack
 
 # Installation Instructions
-- clone reposity
-- add .evn.dev file to root folder
+- clone repository
+- add .evn.dev file to the root of the backend folder.
 ```
 PORT=4000
 DB_URI=mongodb://localhost:27017/challenge-6-chitter
 JWT_SECRET=myWonderfulDigitalFuturesBackendJWTSecretKey###!!!k9p
 ```
 
-- Add .env.test file to foot folder
+- Add .env.test file to the root of the backend folder.
 ```
 DB_URI=mongodb://localhost:27017/challenge-6-test
 PORT=4000
 JWT_SECRET=myWonderfulDigitalFuturesBackendJWTSecretKey###!!!k9p
 ```
 
-- Ensure mongoDB is running with a development and a testing database.
+- Ensure MongoDB is running with a development and a testing database.
 - Insert their URI in the .dev and .dev files, respectively.
-- Cd into backend folder. Enter npm start.
+- Cd into the backend folder. Enter npm start.
 - Cd into frontend/chitter-frontend. Enter npm run dev.
 
 # Application Overview
 Introducing Chitter by DFCorp, the latest innovation in social media platforms. Chitter is designed to offer a refreshing, user-centric approach to social interaction, allowing users to connect, share, and express themselves in a dynamic, digital environment. Our commitment to a seamless user experience and cutting-edge technology sets Chitter apart in the crowded social media landscape.
 
 ## Software purpose
-Chitters core purpose is to enable users to crease and share "Peeps", short amounts of text, on a publicly available site. We aim to give everyone a voice and feel heard in an increasingly clouded world. Users can then reply to these Peeps to share their opinion on the topic, building an inclusive and knowledge sharing community.
+Chitters core purpose is to enable users to create and share "Peeps", short amounts of text, on a publicly available site. We aim to give everyone a voice and feel heard in an increasingly clouded world. Users can then reply to these Peeps to share their opinions on the topic, building an inclusive and knowledge-sharing community.
 
-## Technical application Explaination
-The frontend React app uses a Single Page Application method of building web apps. React router creates the impression of changing web-pages, but this is handled within the Javascript, allowing for a faster, better UI experience.
+## Technical application Explanation
+The frontend React app uses a single-page application method of building web apps. React router creates the impression of changing web pages, but this is handled within the Javascript, allowing for a faster, better UI experience.
 
-The frontend calls API endpoints built on our Express.js server. This is used for logging in, creating an account, posting peeps, posting peep comments, getting all peeps, and so on. The express server offers key routes designed to give the frontend data for the site, which it obtains from the connection to our MongoDb NoSQL database.
+The front end calls API endpoints built on our Express.js server. This is used for logging in, creating an account, posting peeps, posting peep comments, getting all peeps, and so on. The express server offers key routes designed to give the frontend data for the site, which it obtains from the connection to our MongoDB NoSQL database.
 
-Security is ensured through use of Json web tokens that encrypt key data and can only be decrypted on our server. HTTP-only cookies are used to send these to the frontend as these cannot be access by the frontend, but are automatically sent back in subsquent requests. This allows the server to check the request is legitimate for each request.
+Security is ensured through use of JSON web tokens that encrypt key data and can only be decrypted on our server. HTTP-only cookies are used to send these to the frontend as these cannot be accessed by the frontend but are automatically sent back in subsequent requests. This allows the server to check the request is legitimate for each request.
 
 ## Project Objectives
 Accessibility and Ease of Use: Chitter is designed to be accessible without account creation, making it easy for anyone to view content.
@@ -47,13 +47,13 @@ Frontend: React.js for its efficiency in building dynamic SPAs (Single Page Appl
 Backend: Node.js with Express for building the RESTful API, complemented by MongoDB for data storage.
 User Authentication: JWT (JSON Web Tokens) for secure user authentication which is implemented through HTTP-only cookies for maximum security.
 
-- **Responsive Design:** Leveraging CSS frameworks like Bootstrap for a responsive and modern UI , adaptable to various devices.
+- **Responsive Design:** Leveraging CSS frameworks like Bootstrap for a responsive and modern UI, adaptable to various devices.
 
 - **User-Centric Design:** A streamlined user experience, with a focus on ease of navigation and intuitive design. Key features include a prominent Peep feed, easy account management, and a straightforward posting interface.
 
 - **Security:** JWT tokens are used for authorisation and security. They are stored within HTTP-only cookies to prevent cross-site scripting attacks.
 
-- **Scalability and Future Expansion:** React's component structure and our folder management ensures re-usable components for future expansion. The application's architecture is built with scalability in mind, allowing for the easy integration of additional features and user growth.
+- **Scalability and Future Expansion:** React's component structure and our folder management ensures reusable components for future expansion. The application's architecture is built with scalability in mind, allowing for the easy integration of additional features and user growth.
 
 ### Results
 **Achieved Results**
@@ -66,14 +66,14 @@ User Authentication: JWT (JSON Web Tokens) for secure user authentication which 
 - Enhanced UI/UX Design: Further refinement of the interface to enhance visual appeal and user engagement.
 - Notification System: Develop a system for user notifications and tagging from other users.
 - Add user following system that allows users to track peeps made by certain users.
-- OAuth 2.0 for easy sign-up and login. This will allow users to build user accounts through existing gmail accounts for quicker signup, increasing user signup.
+- OAuth 2.0 for easy sign-up and login. This will allow users to build user accounts through existing Gmail accounts for quicker signup, increasing user signup.
 
 By addressing these improvements, Chitter can further solidify its position as a leading social media platform, providing users with an engaging, secure, and intuitive experience.
 
 
 ## Why use a single-page application?
 ### Introduction
-A single-page application is a website that dynamically re-renders content to the current web page. In contrast, in multi-page applications, the web browser loads entirely new pages by fetching from a new url. For example, a developer would have multiple HTML files for the site, and the web browser re-directs the user to each, depending on the link/URL inputted.
+A single-page application is a website that dynamically re-renders content to the current web page. In contrast, in multi-page applications, the web browser loads entirely new pages by fetching from a new URL. For example, a developer would have multiple HTML files for the site, and the web browser re-directs the user to each, depending on the link/URL inputted.
 
 Some examples of large single-page sites include Airbnb, Netflix and Google Maps. These are good examples because, to the user, it feels multi-page. For example, as the user clicks on different links, they go to different pages such as a signup or login page. The application is made to feel like it has many pages, but it uses Javascript behind the scenes to re-render the content making it feel like different pages.
 
@@ -134,7 +134,7 @@ SPA's don't require a new call to the server for every load. The browser has the
 ### Connecting Diagram
 ![img_19.png](img_19.png)
 
-### Component Hierarchy with state and api calls
+### Component Hierarchy with state and API calls
 ![img_10.png](img_10.png)
 
 
